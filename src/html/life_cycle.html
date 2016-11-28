@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/lib/vue.js"></script>
+</head>
+<body>
+<div>控制台查看输出（各生命周期）：create、mount、update、destory</div>
+<div id="app">
+    {{message}}<br/>
+    <button v-on:click="changeData">点击反转显示data的message</button>
+    <button v-on:click="destory">destory实例</button>
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+//        template: "<p>这是template文本</p>",
+        data: {
+            message: "data的message信息"
+        },
+        methods: {
+            changeData(){
+                this.message = this.message.split("").reverse().join("")
+            },
+            destory(){
+                this.$destroy();
+            }
+        },
+        beforeCreate: function () {
+            console.log("beforeCreate-----");
+        },
+        created: function () {
+            console.log("created-----");
+        },
+        beforeMount: function () {
+            console.log("beforeMount-----");
+        },
+        mounted: function () {
+            console.log("mounted-----");
+        },
+        beforeUpdate: function () {
+            console.log("beforeUpdate-----");
+        },
+        updated: function () {
+            console.log("updated-----");
+        },
+        beforeDestroy: function () {
+            console.log("beforeDestroy-----");
+        },
+        destroyed: function () {
+            console.log("destroyed-----");
+        }
+    })
+</script>
+</body>
+</html>
